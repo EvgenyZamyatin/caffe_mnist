@@ -71,7 +71,6 @@ def create_network(name, db, batch_size):
 def get_feature_vector(net, image):
     transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
     transformer.set_transpose('data', (2, 0, 1))
-    image = caffe.io.load_image('mnist_1.png', color=False)
     transformed_image = transformer.preprocess('data', image)
     net.blobs['data'].data[...] = transformed_image
     out = net.forward()
